@@ -17,15 +17,18 @@ struct RocketStageConfiguration {
   let liquidOxygenMass: Double
   let nominalBurnTime: Int
     //you only get a memberwise initializer if a structure does not define any initializers
+    
+
+}
+extension RocketStageConfiguration{
     init(propellantMass: Double, liquidOxygenMass: Double) {
       self.propellantMass = propellantMass
       self.liquidOxygenMass = liquidOxygenMass
       self.nominalBurnTime = 180
     }
-
 }
-
 let stageOneConfiguration = RocketStageConfiguration(propellantMass: 119.1,
-liquidOxygenMass: 276.0)
+liquidOxygenMass: 276.0, nominalBurnTime: 180)
+
 
 
