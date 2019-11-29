@@ -46,5 +46,28 @@ currentWeather.temperatureCelsius
 currentWeather.windSpeedKilometersPerHour
 
 
+struct GuidanceSensorStatus {
+  var currentZAngularVelocityRadiansPerMinute: Double
+  let initialZAngularVelocityRadiansPerMinute: Double
+  var needsCorrection: Bool
+
+  init(zAngularVelocityDegreesPerMinute: Double, needsCorrection: Bool = false) {
+    let radiansPerMinute = zAngularVelocityDegreesPerMinute * 0.01745329251994
+    self.currentZAngularVelocityRadiansPerMinute = radiansPerMinute
+    self.initialZAngularVelocityRadiansPerMinute = radiansPerMinute
+    self.needsCorrection = needsCorrection
+  }
+    //delegate initializer
+    init(zAngularVelocityDegreesPerMinute: Double, needsCorrection: Int) {
+      self.init(zAngularVelocityDegreesPerMinute: zAngularVelocityDegreesPerMinute,
+       needsCorrection: (needsCorrection > 0))
+    }
+  
+
+}
+//DRY don't repeat yourself after quit needcorrection from this instance and set false in the main initializer
+let guidanceStatus = GuidanceSensorStatus(zAngularVelocityDegreesPerMinute: 2.2)
+guidanceStatus.currentZAngularVelocityRadiansPerMinute // 0.038
+guidanceStatus.needsCorrection // false
 
 
